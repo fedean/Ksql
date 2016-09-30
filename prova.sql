@@ -1,0 +1,32 @@
+//prova.sql
+
+CREATE DATABASE Spy; 
+CREATE TABLE Student();
+CREATE TABLE Students(Id SMALLINT, Name VARCHAR, Surname VARCHAR);
+ALTER TABLE Student ADD Anno SMALLINT;
+ALTER TABLE Students ADD Anno SMALLINT;
+
+CREATE TABLE Newtable1();
+CREATE TABLE Newtable2();
+CREATE TABLE Newtable3();
+
+ALTER TABLE Student DROP COLUMN Anno;
+ALTER TABLE Student ADD AnnoAccademico SMALLINT;
+
+ALTER TABLE Student RENAME COLUMN AnnoAccademico TO NewAnnoAccademico;
+
+ALTER TABLE Student RENAME TO NewStudent;
+
+ALTER TABLE Students DROP Name, DROP IF EXISTS Surname;
+
+ALTER TABLE Students ADD A SMALLINT, ADD B SMALLINT;
+
+DROP TABLE Newtable2 , Newtable3;
+
+CREATE TABLE Prova (Try SMALLINT, Pry VARCHAR(4), Cry VARCHAR);
+INSERT INTO Prova (Try) VALUES (5);
+INSERT INTO Prova (Try,Pry) VALUES (7,'"ciao"');
+
+CREATE TABLE Chiave (key SMALLINT PRIMARY KEY, notkey VARCHAR(4));
+
+//INSERT INTO Prova (Try,Pry) VALUES (7);

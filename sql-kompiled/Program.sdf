@@ -1,0 +1,208 @@
+module Program
+
+imports Common
+imports KBuiltinsBasic
+exports
+
+context-free syntax
+context-free priorities
+{
+    Bool -> Exp {}
+    Ktype -> Exp {}
+    Id -> Exp {}
+    "-" Exp -> Exp {cons("Exp1257Syn")}
+} > { left:
+    Exp "*" Exp -> Exp {left, cons("Exp1498Syn")}
+    Exp "/" Exp -> Exp {left, cons("Exp1534Syn")}
+} > { left:
+    Exp "+" Exp -> Exp {left, cons("Exp1492Syn")}
+    Exp "-" Exp -> Exp {left, cons("Exp1482Syn")}
+} > { left:
+    Exp "AND" Exp -> Exp {left, cons("Exp1323Syn")}
+    Exp "OR" Exp -> Exp {left, cons("Exp1433Syn")}
+}
+
+context-free start-symbols
+Add AddAttribute Stmts RenameColumnAttribute Attribute AddAttributes Attributes Values String Int Conditions Stmt DdropAttributes Ktype Substitution Bool Substitutions Tables DzInt RenameColumnAttributes Condition DzString DzBool DdropAttribute AlterCommands Columns Ddrop Float Type RenameTable AlterCommand Command Exps Value Id Exp AndOr DzFloat K
+context-free syntax
+    "CREATE DATABASE" InsertDzId ";" -> Stmt {cons("Stmt165Syn")}
+    DzString -> String {}
+    "DROP COLUMN IF EXISTS" -> Ddrop {cons("Ddrop1452Syn")}
+    "CREATE TABLE" InsertDzId "(" InsertDzAttributes ")" ";" -> Stmt {cons("Stmt1530Syn")}
+    Stmt Stmts -> Stmts {cons("Stmts1453Syn")}
+    {Id ","}* -> Tables {cons("Tables1ListSyn")}
+    RenameColumnAttribute -> AlterCommand {}
+    "UPDATE" InsertDzId "SET" InsertDzSubstitutions ";" -> Stmt {cons("Stmt1459Syn")}
+    "null" -> Value {cons("Value1224Syn")}
+    Add Attribute -> AddAttribute {cons("AddAttribute15Syn")}
+    Id "=" "null" -> Condition {cons("Condition1226Syn")}
+    DzFloat -> Float {}
+    Id "=" "'" InsertDzInt "'" -> Condition {cons("Condition1538Syn")}
+    String -> Ktype {}
+    Int -> Value {}
+    Conditions InsertDzAndOr Conditions -> Conditions {cons("Conditions122Syn")}
+    "DROP IF EXISTS" -> Ddrop {cons("Ddrop124Syn")}
+    "ALTER TABLE" InsertDzId InsertDzAlterCommands ";" -> Stmt {cons("Stmt1342Syn")}
+    AddAttribute -> AlterCommand {}
+    "VARCHAR" "(" InsertDzInt ")" -> Type {cons("Type1343Syn")}
+    "ADD SCHEMA" InsertDzId "(" InsertDzAttributes ")" ";" -> Command {cons("Command1544Syn")}
+    DzBool -> Bool {}
+    "RENAME TO" Id -> RenameTable {cons("RenameTable1547Syn")}
+    "(" InsertDzExp ")" -> Exp {cons("Exp1Bracket")}
+    "SMALLINT" -> Type {cons("Type1474Syn")}
+    "UPDATE" InsertDzId "SET" InsertDzSubstitutions "WHERE" InsertDzConditions ";" -> Stmt {cons("Stmt183Syn")}
+    {Value ","}* -> Values {cons("Values1ListSyn")}
+    "INSERT INTO" InsertDzId "(" InsertDzColumns ")" "VALUES" "(" InsertDzValues ")" ";" -> Stmt {cons("Stmt1476Syn")}
+    {AddAttribute ","}* -> AddAttributes {cons("AddAttributes1ListSyn")}
+    "VARCHAR" -> Type {cons("Type133Syn")}
+    DdropAttribute -> AlterCommand {}
+    "ADD" -> Add {cons("Add1552Syn")}
+    "DROP COLUMN" -> Ddrop {cons("Ddrop1283Syn")}
+    "DROP TABLE" InsertDzTables ";" -> Stmt {cons("Stmt1355Syn")}
+    "AND" -> AndOr {cons("AndOr1284Syn")}
+    {AlterCommand ","}* -> AlterCommands {cons("AlterCommands1ListSyn")}
+    "OR" -> AndOr {cons("AndOr1240Syn")}
+    Id Type -> Attribute {cons("Attribute1357Syn")}
+    Id "=" "null" -> Substitution {cons("Substitution142Syn")}
+    DzInt -> Int {}
+    Stmt -> Stmts {}
+    RenameTable -> AlterCommand {}
+    Id InsertDzType "PRIMARY KEY" -> Attribute {cons("Attribute147Syn")}
+    {Id ","}* -> Columns {cons("Columns1ListSyn")}
+    {DdropAttribute ","}* -> DdropAttributes {cons("DdropAttributes1ListSyn")}
+    "SELECT" "*" "FROM" InsertDzId ";" -> Stmt {cons("Stmt1295Syn")}
+    Id "=" "'" InsertDzString "'" -> Condition {cons("Condition1565Syn")}
+    "'" InsertDzString "'" -> Value {cons("Value1299Syn")}
+    Id "=" "'" InsertDzString "'" -> Substitution {cons("Substitution1437Syn")}
+    {Substitution ","}* -> Substitutions {cons("Substitutions1ListSyn")}
+    Ddrop Id -> DdropAttribute {cons("DdropAttribute1442Syn")}
+    Int -> Ktype {}
+    "ADD COLUMN" -> Add {cons("Add1259Syn")}
+    Condition -> Conditions {}
+    "SAVE KEY" InsertDzId "(" InsertDzColumns ")" "VALUES" "(" InsertDzValues ")" ";" -> Command {cons("Command1368Syn")}
+    {Exp ","}* -> Exps {cons("Exps1ListSyn")}
+    {RenameColumnAttribute ","}* -> RenameColumnAttributes {cons("RenameColumnAttributes1ListSyn")}
+    "RENAME COLUMN" InsertDzId "TO" Id -> RenameColumnAttribute {cons("RenameColumnAttribute1446Syn")}
+    "DROP" -> Ddrop {cons("Ddrop1574Syn")}
+    {Attribute ","}* -> Attributes {cons("Attributes1ListSyn")}
+    Id "=" "'" InsertDzInt "'" -> Substitution {cons("Substitution164Syn")}
+    AlterCommands -> InsertDzAlterCommands
+    Attributes -> InsertDzAttributes
+    Values -> InsertDzValues
+    Columns -> InsertDzColumns
+    String -> InsertDzString
+    Int -> InsertDzInt
+    Conditions -> InsertDzConditions
+    Type -> InsertDzType
+    Substitutions -> InsertDzSubstitutions
+    Tables -> InsertDzTables
+    Id -> InsertDzId
+    Exp -> InsertDzExp
+    AndOr -> InsertDzAndOr
+
+
+    DzDzString        -> DzString    {cons("DzString1Const")}
+    DzDzBool        -> DzBool    {cons("DzBool1Const")}
+    DzDzInt        -> DzInt    {cons("DzInt1Const")}
+    DzDzId        -> DzId    {cons("DzId1Const")}
+    DzDzFloat        -> DzFloat    {cons("DzFloat1Const")}
+
+
+
+%% start symbols subsorts
+    KItem        -> K
+    Add        -> K
+    AddAttribute        -> K
+    Stmts        -> K
+    RenameColumnAttribute        -> K
+    Attribute        -> K
+    String        -> K
+    Int        -> K
+    Conditions        -> K
+    Stmt        -> K
+    Ktype        -> K
+    Substitution        -> K
+    Bool        -> K
+    DzInt        -> K
+    Condition        -> K
+    DzString        -> K
+    DzBool        -> K
+    DdropAttribute        -> K
+    Ddrop        -> K
+    Float        -> K
+    Type        -> K
+    RenameTable        -> K
+    AlterCommand        -> K
+    Command        -> K
+    Value        -> K
+    Id        -> K
+    Exp        -> K
+    AndOr        -> K
+    DzFloat        -> K
+lexical syntax
+    "Infinity" -> DzDzFloat
+    "true" -> DzDzBool
+    "false" -> DzDzBool
+    "NaN" -> DzDzFloat
+
+
+    "ADD" -> IdDz {reject}
+    "SET" -> IdDz {reject}
+    "FROM" -> IdDz {reject}
+    "DROP" -> IdDz {reject}
+    "VALUES" -> IdDz {reject}
+    "UPDATE" -> IdDz {reject}
+    "NaN" -> IdDz {reject}
+    "OR" -> IdDz {reject}
+    "Infinity" -> IdDz {reject}
+    "false" -> IdDz {reject}
+    "WHERE" -> IdDz {reject}
+    "SELECT" -> IdDz {reject}
+    "null" -> IdDz {reject}
+    "SMALLINT" -> IdDz {reject}
+    "AND" -> IdDz {reject}
+    "true" -> IdDz {reject}
+    "VARCHAR" -> IdDz {reject}
+    "TO" -> IdDz {reject}
+
+lexical restrictions
+    %% follow restrictions
+
+
+lexical syntax
+    [A-Za-z\_][A-Za-z0-9\_]* -> IdDz
+    "ADD" -> IdDz {reject}
+    "SET" -> IdDz {reject}
+    "FROM" -> IdDz {reject}
+    "DROP" -> IdDz {reject}
+    "VALUES" -> IdDz {reject}
+    "UPDATE" -> IdDz {reject}
+    "NaN" -> IdDz {reject}
+    "OR" -> IdDz {reject}
+    "Infinity" -> IdDz {reject}
+    "false" -> IdDz {reject}
+    "WHERE" -> IdDz {reject}
+    "SELECT" -> IdDz {reject}
+    "null" -> IdDz {reject}
+    "SMALLINT" -> IdDz {reject}
+    "AND" -> IdDz {reject}
+    "true" -> IdDz {reject}
+    "VARCHAR" -> IdDz {reject}
+    "TO" -> IdDz {reject}
+    [\-\+]? [0-9]+ -> DzIntDz
+    [\+\-]?[0-9]+"."[0-9]+([eE][\+\-]?[0-9]+)?([fFdD]|([pP][0-9]+[xX][0-9]+))? -> DzFloatDz
+    [\+\-]?"Infinity"([fFdD]|([pP][0-9]+[xX][0-9]+))? -> DzFloatDz
+    "Infinity" -> DzFloatDz {reject}
+    "NaN"([fFdD]|([pP][0-9]+[xX][0-9]+))? -> DzFloatDz
+    "NaN" -> DzFloatDz {reject}
+    "\"" ((~[\"\n\r\\]) | (((([\\][nrtf\"\\]) | ([\\][x][0-9a-fA-F][0-9a-fA-F])) | ([\\][u][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F])) | ([\\][U][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F])))* "\"" -> DzStringDz
+context-free syntax
+    DzStringDz -> DzString {cons("DzString1Const")}
+    IdDz -> Id {cons("Id1Const")}
+    DzIntDz -> DzInt {cons("DzInt1Const")}
+    DzFloatDz -> DzFloat {cons("DzFloat1Const")}
+
+
+context-free restrictions
+    Id -/- [A-Za-z0-9\_]
+    DzInt -/-  [0-9]
